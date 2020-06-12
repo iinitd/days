@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "900E1811-38AF-423F-B6B8-F93AAD04BCFC"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "04846939-6AAD-4384-835F-18D7402EDB24"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "days/ContentView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "84"
+            endingLineNumber = "84"
+            landmarkName = "unknown"
+            landmarkType = "0">
+            <Locations>
+               <Location
+                  uuid = "04846939-6AAD-4384-835F-18D7402EDB24 - 442507924a163fd9"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "days.TodoCard.item.getter : days.TodoItem"
+                  moduleName = "days"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/M/Playground.localized/iosapp/days/days/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "79"
+                  endingLineNumber = "79"
+                  offsetFromSymbolStart = "67">
+               </Location>
+               <Location
+                  uuid = "04846939-6AAD-4384-835F-18D7402EDB24 - 4bbd2d245e454bcd"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "days.TodoCard.item.setter : days.TodoItem"
+                  moduleName = "days"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/M/Playground.localized/iosapp/days/days/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "79"
+                  endingLineNumber = "79"
+                  offsetFromSymbolStart = "96">
+               </Location>
+               <Location
+                  uuid = "04846939-6AAD-4384-835F-18D7402EDB24 - 4cb5a88f619f04dc"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "days.TodoCard.item.modify : days.TodoItem"
+                  moduleName = "days"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/M/Playground.localized/iosapp/days/days/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "67">
+               </Location>
+               <Location
+                  uuid = "04846939-6AAD-4384-835F-18D7402EDB24 - 8db5eb2313986ecd"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "days.TodoCard.item.modify : days.TodoItem with unmangled suffix &quot;.resume.0&quot;"
+                  moduleName = "days"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/M/Playground.localized/iosapp/days/days/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "79"
+                  endingLineNumber = "79"
+                  offsetFromSymbolStart = "37">
+               </Location>
+               <Location
+                  uuid = "04846939-6AAD-4384-835F-18D7402EDB24 - 5d7873fd9337a491"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "days.TodoCard.$item.getter : SwiftUI.ObservedObject&lt;days.TodoItem&gt;.Wrapper"
+                  moduleName = "days"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/M/Playground.localized/iosapp/days/days/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "79"
+                  endingLineNumber = "79"
+                  offsetFromSymbolStart = "96">
+               </Location>
+               <Location
+                  uuid = "04846939-6AAD-4384-835F-18D7402EDB24 - c925a9ca06fdb6b2"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "days.TodoCard.init(item: days.TodoItem, moc: SwiftUI.Environment&lt;__C.NSManagedObjectContext&gt;, isEditable: Swift.Bool) -&gt; days.TodoCard"
+                  moduleName = "days"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/M/Playground.localized/iosapp/days/days/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "79"
+                  endingLineNumber = "79"
+                  offsetFromSymbolStart = "23">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>
