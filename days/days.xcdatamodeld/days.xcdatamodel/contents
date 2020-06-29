@@ -4,9 +4,10 @@
         <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="desc" attributeType="String" defaultValueString=""/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
-        <attribute name="name" attributeType="String" defaultValueString=""/>
+        <attribute name="target" attributeType="String" defaultValueString=""/>
+        <attribute name="targetAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
     </entity>
     <elements>
-        <element name="TodoItem" positionX="-54" positionY="-9" width="128" height="103"/>
+        <element name="TodoItem" positionX="-54" positionY="-9" width="128" height="118"/>
     </elements>
 </model>

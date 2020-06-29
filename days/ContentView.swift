@@ -8,6 +8,7 @@
 
 import SwiftUI
 import CoreData
+import Introspect
 
 extension Binding {
     init(_ source: Binding<Value?>, _ defaultValue: Value) {
@@ -31,48 +32,48 @@ func ParseDate(_ date: Date) -> String {
 
 }
 
-func AddTodoItem(context: NSManagedObjectContext){
+func AddTodoItem(context: NSManagedObjectContext) {
     let item = TodoItem(context: context)
-    item.name = "测试"
+    item.target = "测试"
     item.id = UUID()
     item.desc = ""
     item.createdAt = Date()
+    item.targetAt = Date()
     try? context.save()
 }
-
-
 
 struct ContentView: View {
 
     @Environment(\.managedObjectContext) var moc
     @FetchRequest(
         entity: TodoItem.entity(),
-        sortDescriptors: [{ NSSortDescriptor(key: #keyPath(TodoItem.createdAt), ascending: true) }()]
+        sortDescriptors: [{ NSSortDescriptor(key: #keyPath(TodoItem.targetAt), ascending: false) }()]
     ) var items: FetchedResults<TodoItem>
+
+    func update(_ result: FetchedResults<TodoItem>) -> [[TodoItem]] {
+        let dict = Dictionary(grouping: result) { (element: TodoItem) in
+            ParseDate(element.targetAt!)
+        }
+        let sdict = dict.sorted(by: { $0.0 > $1.0 })
+        return sdict.map { $0.1 }
+    }
 
     var body: some View {
         VStack(alignment: .leading) {
             Button("add") {
                 AddTodoItem(context: self.moc)
             }
-            ScrollView {
-                ForEach(0..<items.count,id:\.self) {
-                    idx in
-                    VStack(){
-                        if (idx == 0 || !isSameDay(date1: self.items[idx].createdAt!, date2: self.items[idx - 1].createdAt!)) {
-                            Divider()
-                                               HStack{
-                                                Text(ParseDate(self.items[idx].createdAt!))
-                                                    .font(.headline)
-                                                    .fontWeight(.thin)
-                                                   
-                                                   Spacer()
-                                               }
-                                           }
-                                           TodoCard(item: self.items[idx])
+
+            List {
+                ForEach(update(items), id: \.self) { (section: [TodoItem]) in
+                    Section(header: Text(ParseDate(section[0].targetAt!))) {
+                        ForEach(section, id: \.self) { todo in
+                            HStack {
+                                TodoCard(item: todo)
+                            }
+                        }
                     }
-                   
-                }
+                }.id(items.count)
             }
         }.padding()
 
@@ -96,15 +97,14 @@ struct TodoCard: View {
 
         VStack {
             VStack {
-                HStack{
-                    Text(item.name ?? "hi")
-                        .fontWeight(.thin)
+                HStack {
+                    Text(item.target ?? "hi")
                     Spacer()
                 }
             }
 
         }
-            
+
 
 
             .onTapGesture {
@@ -128,25 +128,63 @@ struct TodoEditor: View {
     @ObservedObject var item: TodoItem
     @Environment(\.managedObjectContext) var moc
     @Binding var isEditable: Bool
-    @State var currentDate : Date = Date()
+    @State var _targetAt: Date = Date()
+    @State var _target: String? = ""
+    @State var titleFocused: Bool = false
 
 
     var body: some View {
 
-        VStack {
-            TextField("Name", text: Binding($item.name, "New Item"))
-            TextField("Desc", text: Binding($item.desc, "New Desc"))
-            DatePicker("Time", selection: $currentDate, displayedComponents: .date)
-            Button("Reset", action: {
-                self.moc.rollback()
-            })
-            Button("Done", action: {
-                self.item.createdAt = self.currentDate
-                try? self.moc.save()
-                self.isEditable.toggle()
-            })
-        }.onAppear(){
-            self.currentDate = self.item.createdAt!
+        NavigationView {
+            VStack {
+//                ASTextField(text:$_target,onCommit: {
+//                   self.item.targetAt = self._targetAt
+//                   self.item.target = self._target
+//                   print("self.item.target",self.item.target)
+//                   try? self.moc.save()
+//                    print(self._target)
+//                }).frame(height:100)
+                TextFieldWithFocus(text: Binding($_target,"target"),
+                   placeholder: NSLocalizedString("summary", comment: ""), isFirstResponder: $titleFocused, onCommit: {
+                   UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+                   self.titleFocused = false
+                })
+                
+                Text(_target!)
+                Spacer()
+                DatePicker("Time", selection: $_targetAt, displayedComponents: .date).labelsHidden()
+                Spacer()
+                HStack {
+                    Button("Delete", action: {
+                        self.isEditable.toggle()
+                        self.moc.delete(self.item)
+                    })
+                }
+                Spacer()
+                }.padding().navigationBarTitle("Navigation", displayMode: .inline)
+                .navigationBarItems(
+                    leading: Button("Reset", action: {
+                        self.moc.rollback()
+                        self.isEditable.toggle()
+                    }),
+                    trailing:
+                    Button("Done",action: {
+                            print("done!!")
+                        self.item.targetAt = self._targetAt
+                        self.item.target = self._target
+                        print("self.item.target",self.item.target)
+                        try? self.moc.save()
+                            self.isEditable.toggle()
+
+                            
+                    })
+                )
+            }
+
+            .onAppear() {
+                self._targetAt = self.item.targetAt!
+                self._target = self.item.target!
+                
         }
 
     }
